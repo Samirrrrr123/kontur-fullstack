@@ -1,0 +1,40 @@
+{
+  "name": "kontur",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "start": "node backend/server.js",
+    "test": "node --test tests/api.test.js"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-router-dom": "7.18.4",
+    "axios": "1.20.0",
+    "zustand": "5.0.15",
+    "lucide-react": "0.511.0",
+    "express": "5.2.1",
+    "cors": "2.8.6",
+    "bcryptjs": "3.0.3",
+    "jsonwebtoken": "9.0.3",
+    "typeorm": "0.3.31",
+    "reflect-metadata": "0.2.2",
+    "sql.js": "1.14.2",
+    "pg": "8.23.1",
+    "zod": "3.25.76",
+    "dotenv": "16.6.1",
+    "@fontsource/manrope": "5.3.0"
+  },
+  "devDependencies": {
+    "vite": "6.4.4",
+    "typescript": "5.9.3",
+    "@vitejs/plugin-react": "4.7.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/node": "22.20.5"
+  },
+  "packageManager": "pnpm@11.19.0"
+}

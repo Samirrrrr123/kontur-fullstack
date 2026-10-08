@@ -1,0 +1,30 @@
+name: kontur
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: kontur
+      POSTGRES_USER: kontur
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kontur-local-password}
+    volumes:
+      - kontur_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kontur -d kontur"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      DATABASE_URL: postgresql://kontur:${POSTGRES_PASSWORD:-kontur-local-password}@db:5432/kontur
+      JWT_SECRET: ${JWT_SECRET:-kontur-local-demo-change-before-public-hosting}
+      CORS_ORIGIN: http://localhost:3000,http://127.0.0.1:3000
+      HOST: 0.0.0.0
+      SEED_DEMO: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  kontur_db:
